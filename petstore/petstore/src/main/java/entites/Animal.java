@@ -25,9 +25,6 @@ public class Animal {
 	@JoinColumn(name = "id_petstore")
 	private PetStore petStore;
 
-	/**
-	 * 
-	 */
 	public Animal() {
 	}
 
@@ -99,18 +96,4 @@ public class Animal {
 		if (this.petStore != null)
 			this.petStore.getAnimals().add(this);
 	}
-
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Animal [id=");
-		builder.append(id);
-		builder.append(", birth=");
-		builder.append(birth);
-		builder.append(", couleur=");
-		builder.append(couleur);
-		builder.append("]");
-		return builder.toString();
-	}
-
 }

@@ -25,5 +25,4 @@ public enum FishLivEnv {
 		}
 		return null;
 	}
-
 }
