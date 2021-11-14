@@ -1,0 +1,29 @@
+package entites;
+
+import java.util.Calendar;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "EMPRUNT")
+public class Emprunt {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+
+	@Column(name = "DATE_DEBUT", nullable = false)
+	private Calendar date_debut;
+	
+	@Column(name = "DELAI", length = 10, nullable = true)
+	private int delai;
+	
+	private Calendar date_fin;
+	
+	
+}

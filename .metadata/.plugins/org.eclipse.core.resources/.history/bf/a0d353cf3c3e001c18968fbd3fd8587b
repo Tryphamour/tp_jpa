@@ -1,8 +1,0 @@
-package entites;
-
-import javax.persistence.Entity;
-
-@Entity 
-public class Livre {
-
-}

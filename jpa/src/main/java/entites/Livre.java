@@ -1,56 +1,122 @@
 package entites;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.io.Serializable;
+import java.util.List;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "LIVRE")
-public class Livre {
+public class Livre implements Serializable {
 
+	/** The id. */
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 
-	@Column(name = "TITRE", length = 255, nullable = false)
+	/** The titre. */
+	@Column(nullable = false)
 	private String titre;
 
-	@Column(name = "AUTEUR", length = 50, nullable = false)
+	/** The auteur. */
+	@Column(length = 50, nullable = false)
 	private String auteur;
 
+	/** The emprunts. */
+	@ManyToMany
+	@JoinTable(name = "COMPO", joinColumns = @JoinColumn(name = "ID_LIV", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "ID_EMP", referencedColumnName = "ID_EMPRUNT"))
+	private List<Emprunt> emprunts;
+
+	/**
+	 * Instantiates a new livre.
+	 */
 	public Livre() {
 	}
-	
-	@Override
-	public String toString() {
-		return "Livre [ id = " + id + " | Titre = " + titre + " | Auteur = " + auteur + "]";
+
+	/**
+	 * Instantiates a new livre.
+	 *
+	 * @param id     the id
+	 * @param titre  the titre
+	 * @param auteur the auteur
+	 */
+	public Livre(int id, String titre, String auteur) {
+		setId(id);
+		setTitre(titre);
+		setAuteur(auteur);
 	}
 
-	public int getId() {
+	/**
+	 * To string.
+	 *
+	 * @return the string
+	 */
+	@Override
+	public String toString() {
+		return new StringBuilder().append("id=").append(id).append(", titre : ").append(titre).append(", auteur : ")
+				.append(auteur).toString();
+	}
+
+	/**
+	 * Gets the id.
+	 *
+	 * @return the id
+	 */
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	/**
+	 * Sets the id.
+	 *
+	 * @param id the new id
+	 */
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
+	/**
+	 * Gets the titre.
+	 *
+	 * @return the titre
+	 */
 	public String getTitre() {
 		return titre;
 	}
 
+	/**
+	 * Sets the titre.
+	 *
+	 * @param titre the new titre
+	 */
 	public void setTitre(String titre) {
 		this.titre = titre;
 	}
 
+	/**
+	 * Gets the auteur.
+	 *
+	 * @return the auteur
+	 */
 	public String getAuteur() {
 		return auteur;
 	}
 
+	/**
+	 * Sets the auteur.
+	 *
+	 * @param auteur the new auteur
+	 */
 	public void setAuteur(String auteur) {
 		this.auteur = auteur;
 	}
 
+	/**
+	 * Sets the livre.
+	 *
+	 * @param livre the livre
+	 */
+	public void SetLivre(Livre livre) {
+		setTitre(livre.getTitre());
+		setAuteur(livre.getAuteur());
+	}
 }

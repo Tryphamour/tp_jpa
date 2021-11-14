@@ -1,0 +1,63 @@
+package entites;
+
+import java.util.Calendar;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "EMPRUNT")
+public class Emprunt {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+
+	@Column(name = "DATE_DEBUT", nullable = false)
+	private Calendar date_debut;
+	
+	@Column(name = "DELAI", length = 10, nullable = true)
+	private int delai;
+	
+	@Column(name = "DATE_FIN", nullable = true)
+	private Calendar date_fin;	
+	
+	public Emprunt () {
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Calendar getDate_debut() {
+		return date_debut;
+	}
+
+	public void setDate_debut(Calendar date_debut) {
+		this.date_debut = date_debut;
+	}
+
+	public int getDelai() {
+		return delai;
+	}
+
+	public void setDelai(int delai) {
+		this.delai = delai;
+	}
+
+	public Calendar getDate_fin() {
+		return date_fin;
+	}
+
+	public void setDate_fin(Calendar date_fin) {
+		this.date_fin = date_fin;
+	}
+}
